@@ -1,0 +1,178 @@
+{
+  "id": "102019afff5bd46785c93e98c0afc61d213",
+  "version": "102019afff5bd46771687cdd79384321e7d",
+  "schema": {
+    "name": "blog_post",
+    "description": "Development updates and announcements",
+    "fields": [
+      {
+        "name": "id",
+        "description": "Unique identifier for the blog post",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "Public identifier"
+        }
+      },
+      {
+        "name": "data_creator",
+        "description": "id of the user who creates the record",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        }
+      },
+      {
+        "name": "data_updater",
+        "description": "id of the user who updates the record",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        }
+      },
+      {
+        "name": "create_time",
+        "description": "create time in timestamp unix",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "Public metadata"
+        },
+        "format": "timestamp"
+      },
+      {
+        "name": "update_time",
+        "description": "update time in timestamp unix",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "Public metadata"
+        },
+        "format": "timestamp"
+      },
+      {
+        "name": "title",
+        "description": "Title of the blog post",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "Public content"
+        }
+      },
+      {
+        "name": "content",
+        "description": "Rich text or markdown content of the post",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "Public content"
+        }
+      },
+      {
+        "name": "publish_date",
+        "description": "Date when the post was published",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "Public metadata"
+        },
+        "nullable": true,
+        "format": "timestamp"
+      },
+      {
+        "name": "featured_image_url",
+        "description": "URL to the featured image",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "Public content"
+        },
+        "nullable": true
+      },
+      {
+        "name": "author_name",
+        "description": "Display name of the author",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "Public attribution"
+        }
+      },
+      {
+        "name": "is_published",
+        "description": "Whether the post is visible to the public",
+        "type": 3,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "Visibility status"
+        }
+      },
+      {
+        "name": "tags",
+        "description": "List of tags associated with the post",
+        "type": 101,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "Public categorization"
+        },
+        "nullable": true,
+        "items": {
+          "type": 1,
+          "taxonomy": {},
+          "reference": {
+            "name": ""
+          }
+        }
+      }
+    ],
+    "indexes": [
+      {
+        "fields": [
+          "id"
+        ],
+        "unique": true,
+        "primary": true,
+        "order": false
+      },
+      {
+        "fields": [
+          "is_published"
+        ],
+        "order": false
+      },
+      {
+        "fields": [
+          "publish_date"
+        ],
+        "order": true
+      },
+      {
+        "fields": [
+          "data_creator"
+        ],
+        "order": false
+      },
+      {
+        "fields": [
+          "data_updater"
+        ],
+        "order": false
+      }
+    ]
+  },
+  "task": {
+    "id": "6937486c07fd448be78e324c",
+    "root": "6935e04198d99bdd07fe5953",
+    "project": "6935e04198d99bdd07fe5952",
+    "user": "d8b1b360-5011-7065-6912-607805fb8f4e"
+  },
+  "namespace": {
+    "id": "01987547fc6c72ecb453bd2736bd4ea0",
+    "tenant": 2,
+    "name": "global-1",
+    "default": true
+  },
+  "revision": 1
+}

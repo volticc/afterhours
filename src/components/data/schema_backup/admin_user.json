@@ -1,0 +1,203 @@
+{
+  "id": "102019afba2844a707d89ab6db1899c152d",
+  "version": "102019afba284497f2ebc20a47876a75dbc",
+  "schema": {
+    "name": "admin_user",
+    "description": "Administrators and staff members with access to the backend system",
+    "fields": [
+      {
+        "name": "id",
+        "description": "Unique identifier for each data of this entity.",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal identifier"
+        }
+      },
+      {
+        "name": "data_creator",
+        "description": "id of the user who creates the record",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        }
+      },
+      {
+        "name": "data_updater",
+        "description": "id of the user who updates the record",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        }
+      },
+      {
+        "name": "create_time",
+        "description": "create time in timestamp unix",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        },
+        "format": "timestamp"
+      },
+      {
+        "name": "update_time",
+        "description": "update time in timestamp unix",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        },
+        "format": "timestamp"
+      },
+      {
+        "name": "username",
+        "description": "Unique username for login",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Identification"
+        }
+      },
+      {
+        "name": "email",
+        "description": "Email address of the administrator",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 3,
+          "reason": "PII"
+        },
+        "taxonomy": {
+          "category": "Contact Data",
+          "subject": "Admin"
+        },
+        "format": "email"
+      },
+      {
+        "name": "password_hash",
+        "description": "Hashed password for authentication",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 4,
+          "reason": "Authentication Credential"
+        },
+        "encryption": true,
+        "format": "password"
+      },
+      {
+        "name": "role",
+        "description": "Role and permission level of the admin",
+        "type": 100,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Authorization"
+        },
+        "enumeration": [
+          {
+            "value": "Unspecified"
+          },
+          {
+            "number": 1,
+            "value": "SuperAdmin"
+          },
+          {
+            "number": 2,
+            "value": "Editor"
+          },
+          {
+            "number": 3,
+            "value": "Viewer"
+          }
+        ]
+      },
+      {
+        "name": "status",
+        "description": "Account status of the admin",
+        "type": 100,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Account Management"
+        },
+        "enumeration": [
+          {
+            "value": "Unspecified"
+          },
+          {
+            "number": 1,
+            "value": "Active"
+          },
+          {
+            "number": 2,
+            "value": "Inactive"
+          },
+          {
+            "number": 3,
+            "value": "Suspended"
+          }
+        ]
+      },
+      {
+        "name": "last_login",
+        "description": "Timestamp of the last successful login",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Security Audit"
+        },
+        "nullable": true,
+        "format": "timestamp"
+      }
+    ],
+    "indexes": [
+      {
+        "fields": [
+          "id"
+        ],
+        "unique": true,
+        "primary": true,
+        "order": false
+      },
+      {
+        "fields": [
+          "username"
+        ],
+        "unique": true,
+        "order": false
+      },
+      {
+        "fields": [
+          "email"
+        ],
+        "unique": true,
+        "order": false
+      },
+      {
+        "fields": [
+          "data_creator"
+        ],
+        "order": false
+      },
+      {
+        "fields": [
+          "data_updater"
+        ],
+        "order": false
+      }
+    ]
+  },
+  "task": {
+    "id": "6936298484385222c7e5528e",
+    "root": "6935e04198d99bdd07fe5953",
+    "project": "6935e04198d99bdd07fe5952",
+    "user": "d8b1b360-5011-7065-6912-607805fb8f4e"
+  },
+  "namespace": {
+    "id": "01987547fc6c72ecb453bd2736bd4ea0",
+    "tenant": 2,
+    "name": "global-1",
+    "default": true
+  },
+  "revision": 1
+}

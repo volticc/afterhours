@@ -1,0 +1,167 @@
+{
+  "id": "102019afabc15197377a26c613aa8385f46",
+  "version": "102019afabc151970ee8b915e1af1b13d49",
+  "schema": {
+    "name": "newsletter_subscriber",
+    "description": "Email capture for newsletter subscribers with details",
+    "fields": [
+      {
+        "name": "id",
+        "description": "Unique identifier for the subscriber",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "System identifier"
+        }
+      },
+      {
+        "name": "data_creator",
+        "description": "id of the user who creates the record",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        }
+      },
+      {
+        "name": "data_updater",
+        "description": "id of the user who updates the record",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        }
+      },
+      {
+        "name": "create_time",
+        "description": "create time in timestamp unix",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Subscription metadata"
+        },
+        "format": "timestamp"
+      },
+      {
+        "name": "update_time",
+        "description": "update time in timestamp unix",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Subscription metadata"
+        },
+        "format": "timestamp"
+      },
+      {
+        "name": "email",
+        "description": "Subscriber email address",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 3,
+          "reason": "PII"
+        },
+        "taxonomy": {
+          "category": "Contact Info",
+          "subject": "Customer"
+        }
+      },
+      {
+        "name": "tags",
+        "description": "Tags associated with the subscriber for segmentation",
+        "type": 101,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Marketing segmentation"
+        },
+        "nullable": true,
+        "items": {
+          "type": 1,
+          "taxonomy": {},
+          "reference": {}
+        }
+      },
+      {
+        "name": "subscription_date",
+        "description": "Date when the user subscribed",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Subscription metadata"
+        },
+        "format": "timestamp"
+      },
+      {
+        "name": "is_active",
+        "description": "Whether the subscription is currently active",
+        "type": 3,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Status indicator"
+        }
+      },
+      {
+        "name": "source",
+        "description": "Source of the subscription (e.g. website, campaign)",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Marketing analytics"
+        }
+      }
+    ],
+    "indexes": [
+      {
+        "fields": [
+          "id"
+        ],
+        "unique": true,
+        "primary": true,
+        "order": false
+      },
+      {
+        "fields": [
+          "email"
+        ],
+        "unique": true,
+        "order": false
+      },
+      {
+        "fields": [
+          "is_active"
+        ],
+        "order": false
+      },
+      {
+        "fields": [
+          "source"
+        ],
+        "order": false
+      },
+      {
+        "fields": [
+          "data_creator"
+        ],
+        "order": false
+      },
+      {
+        "fields": [
+          "data_updater"
+        ],
+        "order": false
+      }
+    ]
+  },
+  "task": {
+    "id": "6935ee561f329e24357e2c97",
+    "root": "6935e04198d99bdd07fe5953",
+    "project": "6935e04198d99bdd07fe5952",
+    "user": "d8b1b360-5011-7065-6912-607805fb8f4e"
+  },
+  "namespace": {
+    "id": "01987547fc6c72ecb453bd2736bd4ea0",
+    "tenant": 2,
+    "name": "global-1",
+    "default": true
+  },
+  "revision": 1
+}

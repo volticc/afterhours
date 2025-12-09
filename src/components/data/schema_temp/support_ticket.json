@@ -1,0 +1,172 @@
+{
+  "id": "102019afba2844a72dea17e11d1875f85e7",
+  "version": "102019afba284497f2ebc20a47876a75dbc",
+  "schema": {
+    "name": "support_ticket",
+    "description": "Customer support tickets and communication",
+    "fields": [
+      {
+        "name": "id",
+        "description": "Unique identifier for each data of this entity.",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal identifier"
+        }
+      },
+      {
+        "name": "data_creator",
+        "description": "id of the user who creates the record",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        }
+      },
+      {
+        "name": "data_updater",
+        "description": "id of the user who updates the record",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        }
+      },
+      {
+        "name": "create_time",
+        "description": "create time in timestamp unix",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        },
+        "format": "timestamp"
+      },
+      {
+        "name": "update_time",
+        "description": "update time in timestamp unix",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        },
+        "format": "timestamp"
+      },
+      {
+        "name": "title",
+        "description": "Subject of the support ticket",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Customer Service"
+        }
+      },
+      {
+        "name": "description",
+        "description": "Detailed description of the issue",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 3,
+          "reason": "Potentially sensitive user data"
+        }
+      },
+      {
+        "name": "status",
+        "description": "Current status of the ticket",
+        "type": 100,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Workflow"
+        },
+        "enumeration": [
+          {
+            "value": "Unspecified"
+          },
+          {
+            "number": 1,
+            "value": "Open"
+          },
+          {
+            "number": 2,
+            "value": "InProgress"
+          },
+          {
+            "number": 3,
+            "value": "Resolved"
+          },
+          {
+            "number": 4,
+            "value": "Closed"
+          }
+        ]
+      },
+      {
+        "name": "user_email",
+        "description": "Email address of the user who opened the ticket",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 3,
+          "reason": "PII"
+        },
+        "format": "email"
+      },
+      {
+        "name": "replies",
+        "description": "JSON array string containing communication history",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 3,
+          "reason": "Communication history"
+        },
+        "nullable": true
+      }
+    ],
+    "indexes": [
+      {
+        "fields": [
+          "id"
+        ],
+        "unique": true,
+        "primary": true,
+        "order": false
+      },
+      {
+        "fields": [
+          "user_email"
+        ],
+        "order": false
+      },
+      {
+        "fields": [
+          "status"
+        ],
+        "order": false
+      },
+      {
+        "fields": [
+          "data_creator"
+        ],
+        "order": false
+      },
+      {
+        "fields": [
+          "data_updater"
+        ],
+        "order": false
+      }
+    ]
+  },
+  "task": {
+    "id": "6936298484385222c7e5528e",
+    "root": "6935e04198d99bdd07fe5953",
+    "project": "6935e04198d99bdd07fe5952",
+    "user": "d8b1b360-5011-7065-6912-607805fb8f4e"
+  },
+  "namespace": {
+    "id": "01987547fc6c72ecb453bd2736bd4ea0",
+    "tenant": 2,
+    "name": "global-1",
+    "default": true
+  },
+  "revision": 1
+}

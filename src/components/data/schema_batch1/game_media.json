@@ -1,0 +1,184 @@
+{
+  "id": "102019afab30c1179ba902de4dce33db616",
+  "version": "102019afab30c117827b6ba1f2495700fd3",
+  "schema": {
+    "name": "game_media",
+    "description": "Media assets associated with games such as screenshots and trailers",
+    "fields": [
+      {
+        "name": "id",
+        "description": "Unique identifier for the media asset",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "Public identifier"
+        }
+      },
+      {
+        "name": "data_creator",
+        "description": "id of the user who creates the record",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        }
+      },
+      {
+        "name": "data_updater",
+        "description": "id of the user who updates the record",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        }
+      },
+      {
+        "name": "create_time",
+        "description": "create time in timestamp unix",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "Public metadata"
+        },
+        "format": "timestamp"
+      },
+      {
+        "name": "update_time",
+        "description": "update time in timestamp unix",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "Public metadata"
+        },
+        "format": "timestamp"
+      },
+      {
+        "name": "game_id",
+        "description": "ID of the game this media belongs to",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "Public relation"
+        }
+      },
+      {
+        "name": "media_type",
+        "description": "Type of media asset",
+        "type": 100,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "Public categorization"
+        },
+        "enumeration": [
+          {
+            "value": "Unspecified"
+          },
+          {
+            "number": 1,
+            "value": "Screenshot"
+          },
+          {
+            "number": 2,
+            "value": "Trailer"
+          },
+          {
+            "number": 3,
+            "value": "CoverArt"
+          },
+          {
+            "number": 4,
+            "value": "Logo"
+          },
+          {
+            "number": 5,
+            "value": "Banner"
+          }
+        ]
+      },
+      {
+        "name": "media_url",
+        "description": "URL where the media is hosted",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "Public asset"
+        }
+      },
+      {
+        "name": "caption",
+        "description": "Caption or description for the media",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "Public content"
+        },
+        "nullable": true
+      },
+      {
+        "name": "display_order",
+        "description": "Order of display in galleries",
+        "type": 2,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "Presentation structure"
+        },
+        "numeric": "int"
+      }
+    ],
+    "indexes": [
+      {
+        "fields": [
+          "id"
+        ],
+        "unique": true,
+        "primary": true,
+        "order": false
+      },
+      {
+        "fields": [
+          "game_id"
+        ],
+        "order": false
+      },
+      {
+        "fields": [
+          "data_creator"
+        ],
+        "order": false
+      },
+      {
+        "fields": [
+          "data_updater"
+        ],
+        "order": false
+      }
+    ],
+    "relations": [
+      {
+        "referencing_fields": [
+          "game_id"
+        ],
+        "referenced_entity": {
+          "name": "game"
+        },
+        "referenced_fields": [
+          "id"
+        ],
+        "cascade": true
+      }
+    ]
+  },
+  "task": {
+    "id": "6935ee561f329e24357e2c97",
+    "root": "6935e04198d99bdd07fe5953",
+    "project": "6935e04198d99bdd07fe5952",
+    "user": "d8b1b360-5011-7065-6912-607805fb8f4e"
+  },
+  "namespace": {
+    "id": "01987547fc6c72ecb453bd2736bd4ea0",
+    "tenant": 2,
+    "name": "global-1",
+    "default": true
+  },
+  "revision": 1
+}

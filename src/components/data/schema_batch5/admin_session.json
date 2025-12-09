@@ -1,0 +1,195 @@
+{
+  "id": "102019afacbf9227be6a1c2fa592652d594",
+  "version": "102019afacbf9227861936b5ba43d5985a7",
+  "schema": {
+    "name": "admin_session",
+    "description": "Session tracking for authenticated admin users",
+    "fields": [
+      {
+        "name": "id",
+        "description": "Unique identifier for the session",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal identifier"
+        }
+      },
+      {
+        "name": "data_creator",
+        "description": "id of the user who creates the record",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        }
+      },
+      {
+        "name": "data_updater",
+        "description": "id of the user who updates the record",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        }
+      },
+      {
+        "name": "create_time",
+        "description": "create time in timestamp unix",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        },
+        "format": "timestamp"
+      },
+      {
+        "name": "update_time",
+        "description": "update time in timestamp unix",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        },
+        "format": "timestamp"
+      },
+      {
+        "name": "user_id",
+        "description": "ID of the admin user associated with this session",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Link to user"
+        }
+      },
+      {
+        "name": "token",
+        "description": "Session token or hash",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 4,
+          "reason": "Authentication Token"
+        },
+        "encryption": true
+      },
+      {
+        "name": "ip_address",
+        "description": "IP address of the client",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 3,
+          "reason": "Security audit and PII"
+        },
+        "nullable": true,
+        "format": "ip"
+      },
+      {
+        "name": "user_agent",
+        "description": "User agent string of the client",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Security audit"
+        },
+        "nullable": true
+      },
+      {
+        "name": "expires_at",
+        "description": "Timestamp when the session expires",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Session validity"
+        },
+        "format": "timestamp"
+      },
+      {
+        "name": "status",
+        "description": "Status of the session",
+        "type": 100,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Session state"
+        },
+        "enumeration": [
+          {
+            "value": "Unspecified"
+          },
+          {
+            "number": 1,
+            "value": "Active"
+          },
+          {
+            "number": 2,
+            "value": "Revoked"
+          },
+          {
+            "number": 3,
+            "value": "Expired"
+          }
+        ]
+      }
+    ],
+    "indexes": [
+      {
+        "fields": [
+          "id"
+        ],
+        "unique": true,
+        "primary": true,
+        "order": false
+      },
+      {
+        "fields": [
+          "token"
+        ],
+        "unique": true,
+        "order": false
+      },
+      {
+        "fields": [
+          "user_id"
+        ],
+        "order": false
+      },
+      {
+        "fields": [
+          "data_creator"
+        ],
+        "order": false
+      },
+      {
+        "fields": [
+          "data_updater"
+        ],
+        "order": false
+      }
+    ],
+    "relations": [
+      {
+        "referencing_fields": [
+          "user_id"
+        ],
+        "referenced_entity": {
+          "name": "admin_user"
+        },
+        "referenced_fields": [
+          "id"
+        ],
+        "cascade": true
+      }
+    ]
+  },
+  "task": {
+    "id": "6935ee561f329e24357e2c97",
+    "root": "6935e04198d99bdd07fe5953",
+    "project": "6935e04198d99bdd07fe5952",
+    "user": "d8b1b360-5011-7065-6912-607805fb8f4e"
+  },
+  "namespace": {
+    "id": "01987547fc6c72ecb453bd2736bd4ea0",
+    "tenant": 2,
+    "name": "global-1",
+    "default": true
+  },
+  "revision": 1
+}

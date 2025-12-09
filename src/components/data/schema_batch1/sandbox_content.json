@@ -1,0 +1,210 @@
+{
+  "id": "102019afab30c11791687580fdc40d2c79f",
+  "version": "102019afab30c117827b6ba1f2495700fd3",
+  "schema": {
+    "name": "sandbox_content",
+    "description": "Draft or staging content that allows previewing changes before publishing",
+    "fields": [
+      {
+        "name": "id",
+        "description": "Unique identifier for the sandbox content",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal identifier"
+        }
+      },
+      {
+        "name": "data_creator",
+        "description": "id of the user who creates the record",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        }
+      },
+      {
+        "name": "data_updater",
+        "description": "id of the user who updates the record",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        }
+      },
+      {
+        "name": "create_time",
+        "description": "create time in timestamp unix",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        },
+        "format": "timestamp"
+      },
+      {
+        "name": "update_time",
+        "description": "update time in timestamp unix",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        },
+        "format": "timestamp"
+      },
+      {
+        "name": "content_type",
+        "description": "Type of content being sandboxed",
+        "type": 100,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "System structure"
+        },
+        "enumeration": [
+          {
+            "value": "Unspecified"
+          },
+          {
+            "number": 1,
+            "value": "Page"
+          },
+          {
+            "number": 2,
+            "value": "NavigationTab"
+          },
+          {
+            "number": 3,
+            "value": "Widget"
+          },
+          {
+            "number": 4,
+            "value": "Integration"
+          }
+        ]
+      },
+      {
+        "name": "content_id",
+        "description": "ID of the original content item being edited",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Reference identifier"
+        }
+      },
+      {
+        "name": "sandbox_data",
+        "description": "JSON string containing the draft data",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Draft content"
+        }
+      },
+      {
+        "name": "created_by_admin_id",
+        "description": "ID of the admin who created this draft",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Audit"
+        }
+      },
+      {
+        "name": "is_published",
+        "description": "Whether this sandbox content has been published",
+        "type": 3,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Workflow status"
+        }
+      },
+      {
+        "name": "published_at",
+        "description": "Timestamp when the content was published",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Workflow metadata"
+        },
+        "nullable": true,
+        "format": "timestamp"
+      },
+      {
+        "name": "version_number",
+        "description": "Version number of the draft",
+        "type": 2,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Version control"
+        },
+        "numeric": "int"
+      }
+    ],
+    "indexes": [
+      {
+        "fields": [
+          "id"
+        ],
+        "unique": true,
+        "primary": true,
+        "order": false
+      },
+      {
+        "fields": [
+          "content_id"
+        ],
+        "order": false
+      },
+      {
+        "fields": [
+          "created_by_admin_id"
+        ],
+        "order": false
+      },
+      {
+        "fields": [
+          "content_type"
+        ],
+        "order": false
+      },
+      {
+        "fields": [
+          "data_creator"
+        ],
+        "order": false
+      },
+      {
+        "fields": [
+          "data_updater"
+        ],
+        "order": false
+      }
+    ],
+    "relations": [
+      {
+        "referencing_fields": [
+          "created_by_admin_id"
+        ],
+        "referenced_entity": {
+          "name": "admin_user"
+        },
+        "referenced_fields": [
+          "id"
+        ]
+      }
+    ]
+  },
+  "task": {
+    "id": "6935ee561f329e24357e2c97",
+    "root": "6935e04198d99bdd07fe5953",
+    "project": "6935e04198d99bdd07fe5952",
+    "user": "d8b1b360-5011-7065-6912-607805fb8f4e"
+  },
+  "namespace": {
+    "id": "01987547fc6c72ecb453bd2736bd4ea0",
+    "tenant": 2,
+    "name": "global-1",
+    "default": true
+  },
+  "revision": 1
+}

@@ -1,0 +1,180 @@
+{
+  "id": "102019afac362297bdc9dffd9c8c7dbe08f",
+  "version": "102019afac362297865b7436bda68f7712d",
+  "schema": {
+    "name": "website_settings",
+    "description": "Global configuration and settings for the website",
+    "fields": [
+      {
+        "name": "id",
+        "description": "Unique identifier for each data of this entity.",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal identifier"
+        }
+      },
+      {
+        "name": "data_creator",
+        "description": "id of the user who creates the record",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        }
+      },
+      {
+        "name": "data_updater",
+        "description": "id of the user who updates the record",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        }
+      },
+      {
+        "name": "create_time",
+        "description": "create time in timestamp unix",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        },
+        "format": "timestamp"
+      },
+      {
+        "name": "update_time",
+        "description": "update time in timestamp unix",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        },
+        "format": "timestamp"
+      },
+      {
+        "name": "setting_key",
+        "description": "Unique key identifying the setting",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Configuration key"
+        }
+      },
+      {
+        "name": "setting_value",
+        "description": "Value associated with the setting key",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Configuration value"
+        },
+        "nullable": true
+      },
+      {
+        "name": "setting_category",
+        "description": "Category classification for the setting",
+        "type": 100,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Configuration organization"
+        },
+        "enumeration": [
+          {
+            "value": "Unspecified"
+          },
+          {
+            "number": 1,
+            "value": "Branding"
+          },
+          {
+            "number": 2,
+            "value": "Theme"
+          },
+          {
+            "number": 3,
+            "value": "Maintenance"
+          },
+          {
+            "number": 4,
+            "value": "Security"
+          },
+          {
+            "number": 5,
+            "value": "Integrations"
+          }
+        ]
+      },
+      {
+        "name": "last_updated_by_admin_id",
+        "description": "ID of the admin who last modified this setting",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Audit trail"
+        }
+      }
+    ],
+    "indexes": [
+      {
+        "fields": [
+          "id"
+        ],
+        "unique": true,
+        "primary": true,
+        "order": false
+      },
+      {
+        "fields": [
+          "setting_key"
+        ],
+        "unique": true,
+        "order": false
+      },
+      {
+        "fields": [
+          "last_updated_by_admin_id"
+        ],
+        "order": false
+      },
+      {
+        "fields": [
+          "data_creator"
+        ],
+        "order": false
+      },
+      {
+        "fields": [
+          "data_updater"
+        ],
+        "order": false
+      }
+    ],
+    "relations": [
+      {
+        "referencing_fields": [
+          "last_updated_by_admin_id"
+        ],
+        "referenced_entity": {
+          "name": "admin_user"
+        },
+        "referenced_fields": [
+          "id"
+        ]
+      }
+    ]
+  },
+  "task": {
+    "id": "6935ee561f329e24357e2c97",
+    "root": "6935e04198d99bdd07fe5953",
+    "project": "6935e04198d99bdd07fe5952",
+    "user": "d8b1b360-5011-7065-6912-607805fb8f4e"
+  },
+  "namespace": {
+    "id": "01987547fc6c72ecb453bd2736bd4ea0",
+    "tenant": 2,
+    "name": "global-1",
+    "default": true
+  },
+  "revision": 1
+}

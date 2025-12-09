@@ -1,0 +1,190 @@
+{
+  "id": "102019afabfd2bb72d197f9f0cb45781ef9",
+  "version": "102019afabfd2ba7ea29087dfc0da3cba96",
+  "schema": {
+    "name": "analytics_event",
+    "description": "Events tracked for user analytics and behavior monitoring",
+    "fields": [
+      {
+        "name": "id",
+        "description": "Unique identifier for each data of this entity.",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal analytics"
+        }
+      },
+      {
+        "name": "data_creator",
+        "description": "id of the user who creates the record",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        }
+      },
+      {
+        "name": "data_updater",
+        "description": "id of the user who updates the record",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        }
+      },
+      {
+        "name": "create_time",
+        "description": "create time in timestamp unix",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        },
+        "format": "timestamp"
+      },
+      {
+        "name": "update_time",
+        "description": "update time in timestamp unix",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        },
+        "format": "timestamp"
+      },
+      {
+        "name": "event_type",
+        "description": "Type of the analytic event",
+        "type": 100,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal analytics"
+        },
+        "enumeration": [
+          {
+            "value": "Unspecified"
+          },
+          {
+            "number": 1,
+            "value": "PageView"
+          },
+          {
+            "number": 2,
+            "value": "LinkClick"
+          },
+          {
+            "number": 3,
+            "value": "FormSubmit"
+          },
+          {
+            "number": 4,
+            "value": "NewsletterSignup"
+          },
+          {
+            "number": 5,
+            "value": "DownloadPress"
+          },
+          {
+            "number": 6,
+            "value": "SuggestionSubmit"
+          }
+        ]
+      },
+      {
+        "name": "page_path",
+        "description": "URL path where the event occurred",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal analytics"
+        }
+      },
+      {
+        "name": "user_session_id",
+        "description": "Session identifier for the user",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 3,
+          "reason": "User tracking"
+        }
+      },
+      {
+        "name": "referrer_url",
+        "description": "URL of the referrer",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal analytics"
+        },
+        "nullable": true
+      },
+      {
+        "name": "metadata",
+        "description": "Additional JSON metadata associated with the event",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 3,
+          "reason": "Potential user data"
+        },
+        "nullable": true
+      },
+      {
+        "name": "timestamp",
+        "description": "Client-side timestamp of the event",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal analytics"
+        },
+        "format": "timestamp"
+      }
+    ],
+    "indexes": [
+      {
+        "fields": [
+          "id"
+        ],
+        "unique": true,
+        "primary": true,
+        "order": false
+      },
+      {
+        "fields": [
+          "page_path"
+        ],
+        "order": false
+      },
+      {
+        "fields": [
+          "user_session_id"
+        ],
+        "order": false
+      },
+      {
+        "fields": [
+          "data_creator"
+        ],
+        "order": false
+      },
+      {
+        "fields": [
+          "data_updater"
+        ],
+        "order": false
+      }
+    ]
+  },
+  "task": {
+    "id": "6935ee561f329e24357e2c97",
+    "root": "6935e04198d99bdd07fe5953",
+    "project": "6935e04198d99bdd07fe5952",
+    "user": "d8b1b360-5011-7065-6912-607805fb8f4e"
+  },
+  "namespace": {
+    "id": "01987547fc6c72ecb453bd2736bd4ea0",
+    "tenant": 2,
+    "name": "global-1",
+    "default": true
+  },
+  "revision": 1
+}

@@ -1,0 +1,175 @@
+{
+  "id": "102019afba2844a727dbf675abcfbe81759",
+  "version": "102019afba284497f2ebc20a47876a75dbc",
+  "schema": {
+    "name": "cms_page",
+    "description": "Content management system pages",
+    "fields": [
+      {
+        "name": "id",
+        "description": "Unique identifier for each data of this entity.",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal identifier"
+        }
+      },
+      {
+        "name": "data_creator",
+        "description": "id of the user who creates the record",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        }
+      },
+      {
+        "name": "data_updater",
+        "description": "id of the user who updates the record",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        }
+      },
+      {
+        "name": "create_time",
+        "description": "create time in timestamp unix",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        },
+        "format": "timestamp"
+      },
+      {
+        "name": "update_time",
+        "description": "update time in timestamp unix",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        },
+        "format": "timestamp"
+      },
+      {
+        "name": "title",
+        "description": "Title of the CMS page",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "Public data"
+        }
+      },
+      {
+        "name": "slug",
+        "description": "URL slug for the page",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "Public data"
+        },
+        "pattern": "^[a-z0-9-]+$"
+      },
+      {
+        "name": "status",
+        "description": "Publication status of the page",
+        "type": 100,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "Public data"
+        },
+        "enumeration": [
+          {
+            "value": "Unspecified"
+          },
+          {
+            "number": 1,
+            "value": "Draft"
+          },
+          {
+            "number": 2,
+            "value": "Published"
+          }
+        ]
+      },
+      {
+        "name": "template_layout",
+        "description": "Identifier for the layout template to use",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "System configuration"
+        }
+      },
+      {
+        "name": "seo_title",
+        "description": "SEO title tag content",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "Public data"
+        },
+        "nullable": true
+      },
+      {
+        "name": "seo_description",
+        "description": "SEO meta description content",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "Public data"
+        },
+        "nullable": true
+      }
+    ],
+    "indexes": [
+      {
+        "fields": [
+          "id"
+        ],
+        "unique": true,
+        "primary": true,
+        "order": false
+      },
+      {
+        "fields": [
+          "slug"
+        ],
+        "unique": true,
+        "order": false
+      },
+      {
+        "fields": [
+          "status"
+        ],
+        "order": false
+      },
+      {
+        "fields": [
+          "data_creator"
+        ],
+        "order": false
+      },
+      {
+        "fields": [
+          "data_updater"
+        ],
+        "order": false
+      }
+    ]
+  },
+  "task": {
+    "id": "6936298484385222c7e5528e",
+    "root": "6935e04198d99bdd07fe5953",
+    "project": "6935e04198d99bdd07fe5952",
+    "user": "d8b1b360-5011-7065-6912-607805fb8f4e"
+  },
+  "namespace": {
+    "id": "01987547fc6c72ecb453bd2736bd4ea0",
+    "tenant": 2,
+    "name": "global-1",
+    "default": true
+  },
+  "revision": 1
+}

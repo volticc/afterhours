@@ -1,0 +1,186 @@
+{
+  "id": "102019afab6107072d2b4e245e6a52cc4b4",
+  "version": "102019afab6107071dea1212deb790df0e9",
+  "schema": {
+    "name": "support_ticket_response",
+    "description": "Responses provided by admins to support tickets",
+    "fields": [
+      {
+        "name": "id",
+        "description": "Unique identifier for each data of this entity.",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal identifier"
+        }
+      },
+      {
+        "name": "data_creator",
+        "description": "id of the user who creates the record",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        }
+      },
+      {
+        "name": "data_updater",
+        "description": "id of the user who updates the record",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        }
+      },
+      {
+        "name": "create_time",
+        "description": "create time in timestamp unix",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        },
+        "format": "timestamp"
+      },
+      {
+        "name": "update_time",
+        "description": "update time in timestamp unix",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        },
+        "format": "timestamp"
+      },
+      {
+        "name": "ticket_id",
+        "description": "Reference to the support ticket being responded to",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal linkage"
+        }
+      },
+      {
+        "name": "responder_admin_id",
+        "description": "Reference to the admin providing the response",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        }
+      },
+      {
+        "name": "response_message",
+        "description": "Content of the response message",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 3,
+          "reason": "Confidential communication"
+        }
+      },
+      {
+        "name": "attachment_urls",
+        "description": "List of URLs for files attached to the response",
+        "type": 101,
+        "compliance": {
+          "confidentiality": 3,
+          "reason": "Confidential attachments"
+        },
+        "nullable": true,
+        "items": {
+          "type": 1,
+          "taxonomy": {
+            "category": "Support",
+            "subject": "Attachments"
+          },
+          "reference": {
+            "name": "support_ticket_response"
+          }
+        }
+      },
+      {
+        "name": "response_time",
+        "description": "Timestamp when the response was sent",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "SLA tracking"
+        },
+        "format": "timestamp"
+      }
+    ],
+    "indexes": [
+      {
+        "fields": [
+          "id"
+        ],
+        "unique": true,
+        "primary": true,
+        "order": false
+      },
+      {
+        "fields": [
+          "ticket_id"
+        ],
+        "order": false
+      },
+      {
+        "fields": [
+          "responder_admin_id"
+        ],
+        "order": false
+      },
+      {
+        "fields": [
+          "data_creator"
+        ],
+        "order": false
+      },
+      {
+        "fields": [
+          "data_updater"
+        ],
+        "order": false
+      }
+    ],
+    "relations": [
+      {
+        "referencing_fields": [
+          "ticket_id"
+        ],
+        "referenced_entity": {
+          "name": "support_ticket"
+        },
+        "referenced_fields": [
+          "id"
+        ],
+        "cascade": true
+      },
+      {
+        "referencing_fields": [
+          "responder_admin_id"
+        ],
+        "referenced_entity": {
+          "name": "admin_user"
+        },
+        "referenced_fields": [
+          "id"
+        ]
+      }
+    ]
+  },
+  "task": {
+    "id": "6935ee561f329e24357e2c97",
+    "root": "6935e04198d99bdd07fe5953",
+    "project": "6935e04198d99bdd07fe5952",
+    "user": "d8b1b360-5011-7065-6912-607805fb8f4e"
+  },
+  "namespace": {
+    "id": "01987547fc6c72ecb453bd2736bd4ea0",
+    "tenant": 2,
+    "name": "global-1",
+    "default": true
+  },
+  "revision": 1
+}

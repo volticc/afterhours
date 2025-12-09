@@ -1,0 +1,228 @@
+{
+  "id": "102019afabe14e573bd89c6907c5d1e22ce",
+  "version": "102019afabe14e47ef8ad18d0067b013057",
+  "schema": {
+    "name": "newsletter_campaign",
+    "description": "Campaigns for sending newsletters to subscribers",
+    "fields": [
+      {
+        "name": "id",
+        "description": "Unique identifier for each data of this entity.",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal identifier"
+        }
+      },
+      {
+        "name": "data_creator",
+        "description": "id of the user who creates the record",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        }
+      },
+      {
+        "name": "data_updater",
+        "description": "id of the user who updates the record",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        }
+      },
+      {
+        "name": "create_time",
+        "description": "create time in timestamp unix",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        },
+        "format": "timestamp"
+      },
+      {
+        "name": "update_time",
+        "description": "update time in timestamp unix",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        },
+        "format": "timestamp"
+      },
+      {
+        "name": "campaign_name",
+        "description": "Internal name of the newsletter campaign",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal management"
+        }
+      },
+      {
+        "name": "subject",
+        "description": "Subject line of the newsletter email",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Content draft"
+        }
+      },
+      {
+        "name": "email_body",
+        "description": "Body content of the newsletter, rich text or HTML",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Content draft"
+        }
+      },
+      {
+        "name": "recipient_tags",
+        "description": "List of subscriber tags to target for this campaign",
+        "type": 101,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Targeting logic"
+        },
+        "nullable": true,
+        "items": {
+          "type": 1,
+          "taxonomy": {},
+          "reference": {
+            "name": ""
+          }
+        }
+      },
+      {
+        "name": "scheduled_send_time",
+        "description": "Timestamp when the campaign is scheduled to be sent",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Scheduling metadata"
+        },
+        "nullable": true,
+        "format": "timestamp"
+      },
+      {
+        "name": "sent_time",
+        "description": "Timestamp when the campaign was actually sent",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Execution metadata"
+        },
+        "nullable": true,
+        "format": "timestamp"
+      },
+      {
+        "name": "status",
+        "description": "Current status of the campaign",
+        "type": 100,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Workflow status"
+        },
+        "enumeration": [
+          {
+            "value": "Unspecified"
+          },
+          {
+            "number": 1,
+            "value": "Draft"
+          },
+          {
+            "number": 2,
+            "value": "Scheduled"
+          },
+          {
+            "number": 3,
+            "value": "Sent"
+          },
+          {
+            "number": 4,
+            "value": "Cancelled"
+          }
+        ]
+      },
+      {
+        "name": "created_by_admin_id",
+        "description": "ID of the admin user who created this campaign",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Audit trail"
+        }
+      }
+    ],
+    "indexes": [
+      {
+        "fields": [
+          "id"
+        ],
+        "unique": true,
+        "primary": true,
+        "order": false
+      },
+      {
+        "fields": [
+          "status"
+        ],
+        "order": false
+      },
+      {
+        "fields": [
+          "scheduled_send_time"
+        ],
+        "order": true
+      },
+      {
+        "fields": [
+          "created_by_admin_id"
+        ],
+        "order": false
+      },
+      {
+        "fields": [
+          "data_creator"
+        ],
+        "order": false
+      },
+      {
+        "fields": [
+          "data_updater"
+        ],
+        "order": false
+      }
+    ],
+    "relations": [
+      {
+        "referencing_fields": [
+          "created_by_admin_id"
+        ],
+        "referenced_entity": {
+          "name": "admin_user"
+        },
+        "referenced_fields": [
+          "id"
+        ]
+      }
+    ]
+  },
+  "task": {
+    "id": "6935ee561f329e24357e2c97",
+    "root": "6935e04198d99bdd07fe5953",
+    "project": "6935e04198d99bdd07fe5952",
+    "user": "d8b1b360-5011-7065-6912-607805fb8f4e"
+  },
+  "namespace": {
+    "id": "01987547fc6c72ecb453bd2736bd4ea0",
+    "tenant": 2,
+    "name": "global-1",
+    "default": true
+  },
+  "revision": 1
+}

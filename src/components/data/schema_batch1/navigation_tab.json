@@ -1,0 +1,193 @@
+{
+  "id": "102019afab30c11796f842c3c84a4677481",
+  "version": "102019afab30c117827b6ba1f2495700fd3",
+  "schema": {
+    "name": "navigation_tab",
+    "description": "Configuration for site navigation structure",
+    "fields": [
+      {
+        "name": "id",
+        "description": "Unique identifier for the navigation tab",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "Public identifier"
+        }
+      },
+      {
+        "name": "data_creator",
+        "description": "id of the user who creates the record",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        }
+      },
+      {
+        "name": "data_updater",
+        "description": "id of the user who updates the record",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        }
+      },
+      {
+        "name": "create_time",
+        "description": "create time in timestamp unix",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "Public metadata"
+        },
+        "format": "timestamp"
+      },
+      {
+        "name": "update_time",
+        "description": "update time in timestamp unix",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "Public metadata"
+        },
+        "format": "timestamp"
+      },
+      {
+        "name": "label",
+        "description": "Display label for the tab",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "Public content"
+        }
+      },
+      {
+        "name": "url_path",
+        "description": "URL path the tab links to",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "Public structure"
+        }
+      },
+      {
+        "name": "parent_tab_id",
+        "description": "ID of the parent tab for nested navigation",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "Public structure"
+        },
+        "nullable": true
+      },
+      {
+        "name": "display_order",
+        "description": "Numeric order for display sorting",
+        "type": 2,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "Public structure"
+        },
+        "numeric": "int"
+      },
+      {
+        "name": "is_visible_public",
+        "description": "Whether the tab is visible to public users",
+        "type": 3,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "Visibility setting"
+        }
+      },
+      {
+        "name": "is_dropdown",
+        "description": "Whether the tab acts as a dropdown menu",
+        "type": 3,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "UI behavior"
+        }
+      },
+      {
+        "name": "icon_name",
+        "description": "Name of the icon to display with the tab",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "UI asset"
+        },
+        "nullable": true
+      },
+      {
+        "name": "is_sandbox",
+        "description": "Whether this is a sandbox/draft version",
+        "type": 3,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal status"
+        }
+      }
+    ],
+    "indexes": [
+      {
+        "fields": [
+          "id"
+        ],
+        "unique": true,
+        "primary": true,
+        "order": false
+      },
+      {
+        "fields": [
+          "url_path"
+        ],
+        "unique": true,
+        "order": false
+      },
+      {
+        "fields": [
+          "parent_tab_id"
+        ],
+        "order": false
+      },
+      {
+        "fields": [
+          "data_creator"
+        ],
+        "order": false
+      },
+      {
+        "fields": [
+          "data_updater"
+        ],
+        "order": false
+      }
+    ],
+    "relations": [
+      {
+        "referencing_fields": [
+          "parent_tab_id"
+        ],
+        "referenced_entity": {
+          "name": "navigation_tab"
+        },
+        "referenced_fields": [
+          "id"
+        ]
+      }
+    ]
+  },
+  "task": {
+    "id": "6935ee561f329e24357e2c97",
+    "root": "6935e04198d99bdd07fe5953",
+    "project": "6935e04198d99bdd07fe5952",
+    "user": "d8b1b360-5011-7065-6912-607805fb8f4e"
+  },
+  "namespace": {
+    "id": "01987547fc6c72ecb453bd2736bd4ea0",
+    "tenant": 2,
+    "name": "global-1",
+    "default": true
+  },
+  "revision": 1
+}

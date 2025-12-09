@@ -1,0 +1,262 @@
+{
+  "id": "102019afbb8d7be746c982a34d598073227",
+  "version": "102019b00c611587c8c865eed01327fc316",
+  "schema": {
+    "name": "game",
+    "description": "Video game catalog entries managed in the system",
+    "fields": [
+      {
+        "name": "id",
+        "description": "Unique identifier for the game",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "Public identifier"
+        }
+      },
+      {
+        "name": "data_creator",
+        "description": "id of the user who creates the record",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        }
+      },
+      {
+        "name": "data_updater",
+        "description": "id of the user who updates the record",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        }
+      },
+      {
+        "name": "create_time",
+        "description": "create time in timestamp unix",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "Public metadata"
+        },
+        "format": "timestamp"
+      },
+      {
+        "name": "update_time",
+        "description": "update time in timestamp unix",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "Public metadata"
+        },
+        "format": "timestamp"
+      },
+      {
+        "name": "title",
+        "description": "Title of the video game",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "Public game information"
+        }
+      },
+      {
+        "name": "short_description",
+        "description": "Brief summary of the game",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "Public game information"
+        }
+      },
+      {
+        "name": "long_description",
+        "description": "Rich text or markdown detailed description",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "Public game information"
+        },
+        "nullable": true
+      },
+      {
+        "name": "category",
+        "description": "Genre or category of the game",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "Public categorization"
+        }
+      },
+      {
+        "name": "status",
+        "description": "Current development or release status",
+        "type": 100,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "Public status"
+        },
+        "enumeration": [
+          {
+            "value": "Unspecified"
+          },
+          {
+            "number": 1,
+            "value": "ComingSoon"
+          },
+          {
+            "number": 2,
+            "value": "Released"
+          },
+          {
+            "number": 3,
+            "value": "InDevelopment"
+          }
+        ]
+      },
+      {
+        "name": "cover_image",
+        "description": "URL to the cover image of the game",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "Public game asset"
+        }
+      },
+      {
+        "name": "screenshots",
+        "description": "Collection of screenshot URLs",
+        "type": 101,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "Public game asset"
+        },
+        "nullable": true,
+        "items": {
+          "type": 1,
+          "taxonomy": {},
+          "reference": {
+            "name": ""
+          }
+        }
+      },
+      {
+        "name": "tags",
+        "description": "Tags associated with the game",
+        "type": 101,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "Public categorization"
+        },
+        "nullable": true,
+        "items": {
+          "type": 1,
+          "taxonomy": {},
+          "reference": {
+            "name": ""
+          }
+        }
+      },
+      {
+        "name": "steam_link",
+        "description": "URL to the Steam store page",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "Public link"
+        },
+        "nullable": true
+      },
+      {
+        "name": "wishlist_link",
+        "description": "URL to add the game to a wishlist",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "Public link"
+        },
+        "nullable": true
+      },
+      {
+        "name": "is_hidden",
+        "description": "Visibility control for the game, if true the game is hidden from public",
+        "type": 3,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "Visibility status"
+        },
+        "nullable": true
+      },
+      {
+        "name": "display_order",
+        "description": "Numeric value for ordering games in display lists",
+        "type": 2,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "Display configuration"
+        },
+        "nullable": true
+      }
+    ],
+    "indexes": [
+      {
+        "fields": [
+          "id"
+        ],
+        "unique": true,
+        "primary": true,
+        "order": false
+      },
+      {
+        "fields": [
+          "status"
+        ],
+        "order": false
+      },
+      {
+        "fields": [
+          "category"
+        ],
+        "order": false
+      },
+      {
+        "fields": [
+          "is_hidden"
+        ],
+        "order": false
+      },
+      {
+        "fields": [
+          "display_order"
+        ],
+        "order": true
+      },
+      {
+        "fields": [
+          "data_creator"
+        ],
+        "order": false
+      },
+      {
+        "fields": [
+          "data_updater"
+        ],
+        "order": false
+      }
+    ]
+  },
+  "task": {
+    "id": "69377e0a9be314c23511c3e0",
+    "root": "6935e04198d99bdd07fe5953",
+    "project": "6935e04198d99bdd07fe5952",
+    "user": "d8b1b360-5011-7065-6912-607805fb8f4e"
+  },
+  "namespace": {
+    "id": "01987547fc6c72ecb453bd2736bd4ea0",
+    "tenant": 2,
+    "name": "global-1",
+    "default": true
+  },
+  "revision": 1
+}

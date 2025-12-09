@@ -1,0 +1,160 @@
+{
+  "id": "102019afba2844a71c3acf6e4f75cc68afb",
+  "version": "102019afba284497f2ebc20a47876a75dbc",
+  "schema": {
+    "name": "game",
+    "description": "Core entity representing a game title in the system",
+    "fields": [
+      {
+        "name": "id",
+        "description": "Unique identifier for each data of this entity.",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal identifier"
+        }
+      },
+      {
+        "name": "data_creator",
+        "description": "id of the user who creates the record",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        }
+      },
+      {
+        "name": "data_updater",
+        "description": "id of the user who updates the record",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        }
+      },
+      {
+        "name": "create_time",
+        "description": "create time in timestamp unix",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        },
+        "format": "timestamp"
+      },
+      {
+        "name": "update_time",
+        "description": "update time in timestamp unix",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        },
+        "format": "timestamp"
+      },
+      {
+        "name": "title",
+        "description": "The official title of the game",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "Public data"
+        }
+      },
+      {
+        "name": "slug",
+        "description": "URL-friendly version of the title",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "Public data"
+        },
+        "pattern": "^[a-z0-9-]+$"
+      },
+      {
+        "name": "description",
+        "description": "Full description of the game content",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "Public data"
+        },
+        "nullable": true
+      },
+      {
+        "name": "status",
+        "description": "Publication status of the game",
+        "type": 100,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "Public data"
+        },
+        "enumeration": [
+          {
+            "value": "Unspecified"
+          },
+          {
+            "number": 1,
+            "value": "Draft"
+          },
+          {
+            "number": 2,
+            "value": "Published"
+          },
+          {
+            "number": 3,
+            "value": "Archived"
+          }
+        ]
+      }
+    ],
+    "indexes": [
+      {
+        "fields": [
+          "id"
+        ],
+        "unique": true,
+        "primary": true,
+        "order": false
+      },
+      {
+        "fields": [
+          "slug"
+        ],
+        "unique": true,
+        "order": false
+      },
+      {
+        "fields": [
+          "status"
+        ],
+        "order": false
+      },
+      {
+        "fields": [
+          "data_creator"
+        ],
+        "order": false
+      },
+      {
+        "fields": [
+          "data_updater"
+        ],
+        "order": false
+      }
+    ]
+  },
+  "task": {
+    "id": "6936298484385222c7e5528e",
+    "root": "6935e04198d99bdd07fe5953",
+    "project": "6935e04198d99bdd07fe5952",
+    "user": "d8b1b360-5011-7065-6912-607805fb8f4e"
+  },
+  "namespace": {
+    "id": "01987547fc6c72ecb453bd2736bd4ea0",
+    "tenant": 2,
+    "name": "global-1",
+    "default": true
+  },
+  "revision": 1
+}

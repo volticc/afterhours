@@ -1,0 +1,163 @@
+{
+  "id": "102019afaca1ff97a328f5a508a33cc443b",
+  "version": "102019afaca1ff9766ca076660e77a8fb89",
+  "schema": {
+    "name": "automation_rule",
+    "description": "Rules for automating system actions based on triggers",
+    "fields": [
+      {
+        "name": "id",
+        "description": "Unique identifier for each data of this entity.",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal identifier"
+        }
+      },
+      {
+        "name": "data_creator",
+        "description": "id of the user who creates the record",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        }
+      },
+      {
+        "name": "data_updater",
+        "description": "id of the user who updates the record",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        }
+      },
+      {
+        "name": "create_time",
+        "description": "create time in timestamp unix",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        },
+        "format": "timestamp"
+      },
+      {
+        "name": "update_time",
+        "description": "update time in timestamp unix",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        },
+        "format": "timestamp"
+      },
+      {
+        "name": "name",
+        "description": "Name of the automation rule",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal logic"
+        }
+      },
+      {
+        "name": "trigger_event",
+        "description": "Event identifier that triggers the rule",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal logic"
+        }
+      },
+      {
+        "name": "conditions",
+        "description": "JSON string defining filter conditions",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal logic"
+        },
+        "nullable": true
+      },
+      {
+        "name": "actions",
+        "description": "JSON string defining actions to execute",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal logic"
+        }
+      },
+      {
+        "name": "status",
+        "description": "Status of the rule",
+        "type": 100,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Control flag"
+        },
+        "enumeration": [
+          {
+            "value": "Unspecified"
+          },
+          {
+            "number": 1,
+            "value": "Active"
+          },
+          {
+            "number": 2,
+            "value": "Inactive"
+          }
+        ]
+      }
+    ],
+    "indexes": [
+      {
+        "fields": [
+          "id"
+        ],
+        "unique": true,
+        "primary": true,
+        "order": false
+      },
+      {
+        "fields": [
+          "trigger_event"
+        ],
+        "order": false
+      },
+      {
+        "fields": [
+          "status"
+        ],
+        "order": false
+      },
+      {
+        "fields": [
+          "data_creator"
+        ],
+        "order": false
+      },
+      {
+        "fields": [
+          "data_updater"
+        ],
+        "order": false
+      }
+    ]
+  },
+  "task": {
+    "id": "6935ee561f329e24357e2c97",
+    "root": "6935e04198d99bdd07fe5953",
+    "project": "6935e04198d99bdd07fe5952",
+    "user": "d8b1b360-5011-7065-6912-607805fb8f4e"
+  },
+  "namespace": {
+    "id": "01987547fc6c72ecb453bd2736bd4ea0",
+    "tenant": 2,
+    "name": "global-1",
+    "default": true
+  },
+  "revision": 1
+}

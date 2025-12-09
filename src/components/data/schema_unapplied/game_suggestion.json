@@ -1,0 +1,169 @@
+{
+  "id": "102019afba2844a721eac54ecf8fe7b025b",
+  "version": "102019afba284497f2ebc20a47876a75dbc",
+  "schema": {
+    "name": "game_suggestion",
+    "description": "Suggestions for new games submitted by users",
+    "fields": [
+      {
+        "name": "id",
+        "description": "Unique identifier for each data of this entity.",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal identifier"
+        }
+      },
+      {
+        "name": "data_creator",
+        "description": "id of the user who creates the record",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        }
+      },
+      {
+        "name": "data_updater",
+        "description": "id of the user who updates the record",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        }
+      },
+      {
+        "name": "create_time",
+        "description": "create time in timestamp unix",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        },
+        "format": "timestamp"
+      },
+      {
+        "name": "update_time",
+        "description": "update time in timestamp unix",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        },
+        "format": "timestamp"
+      },
+      {
+        "name": "title",
+        "description": "Suggested game title",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal review"
+        }
+      },
+      {
+        "name": "description",
+        "description": "Reason or details for the suggestion",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal review"
+        },
+        "nullable": true
+      },
+      {
+        "name": "genre",
+        "description": "Suggested genre of the game",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal review"
+        },
+        "nullable": true
+      },
+      {
+        "name": "submitted_by_email",
+        "description": "Email of the user who submitted the suggestion",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 3,
+          "reason": "PII"
+        },
+        "format": "email"
+      },
+      {
+        "name": "status",
+        "description": "Review status of the suggestion",
+        "type": 100,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Workflow management"
+        },
+        "enumeration": [
+          {
+            "value": "Unspecified"
+          },
+          {
+            "number": 1,
+            "value": "Pending"
+          },
+          {
+            "number": 2,
+            "value": "Approved"
+          },
+          {
+            "number": 3,
+            "value": "Rejected"
+          }
+        ]
+      }
+    ],
+    "indexes": [
+      {
+        "fields": [
+          "id"
+        ],
+        "unique": true,
+        "primary": true,
+        "order": false
+      },
+      {
+        "fields": [
+          "submitted_by_email"
+        ],
+        "order": false
+      },
+      {
+        "fields": [
+          "status"
+        ],
+        "order": false
+      },
+      {
+        "fields": [
+          "data_creator"
+        ],
+        "order": false
+      },
+      {
+        "fields": [
+          "data_updater"
+        ],
+        "order": false
+      }
+    ]
+  },
+  "task": {
+    "id": "6936298484385222c7e5528e",
+    "root": "6935e04198d99bdd07fe5953",
+    "project": "6935e04198d99bdd07fe5952",
+    "user": "d8b1b360-5011-7065-6912-607805fb8f4e"
+  },
+  "namespace": {
+    "id": "01987547fc6c72ecb453bd2736bd4ea0",
+    "tenant": 2,
+    "name": "global-1",
+    "default": true
+  },
+  "revision": 1
+}

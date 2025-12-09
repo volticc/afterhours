@@ -1,0 +1,220 @@
+{
+  "id": "102019afab61070726d910c817c2132967b",
+  "version": "102019afab6107071dea1212deb790df0e9",
+  "schema": {
+    "name": "suggestion_moderation",
+    "description": "Moderation details and status for user-submitted game suggestions",
+    "fields": [
+      {
+        "name": "id",
+        "description": "Unique identifier for each data of this entity.",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal identifier"
+        }
+      },
+      {
+        "name": "data_creator",
+        "description": "id of the user who creates the record",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        }
+      },
+      {
+        "name": "data_updater",
+        "description": "id of the user who updates the record",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        }
+      },
+      {
+        "name": "create_time",
+        "description": "create time in timestamp unix",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        },
+        "format": "timestamp"
+      },
+      {
+        "name": "update_time",
+        "description": "update time in timestamp unix",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        },
+        "format": "timestamp"
+      },
+      {
+        "name": "suggestion_id",
+        "description": "Reference to the game suggestion being moderated",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal linkage"
+        }
+      },
+      {
+        "name": "moderator_admin_id",
+        "description": "Reference to the admin user who moderated the suggestion",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        }
+      },
+      {
+        "name": "status",
+        "description": "Current moderation status of the suggestion",
+        "type": 100,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "Public status"
+        },
+        "enumeration": [
+          {
+            "value": "Unspecified"
+          },
+          {
+            "number": 1,
+            "value": "UnderReview"
+          },
+          {
+            "number": 2,
+            "value": "Approved"
+          },
+          {
+            "number": 3,
+            "value": "Rejected"
+          },
+          {
+            "number": 4,
+            "value": "Planned"
+          },
+          {
+            "number": 5,
+            "value": "Considering"
+          }
+        ]
+      },
+      {
+        "name": "admin_notes",
+        "description": "Internal notes regarding the moderation decision",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal communication"
+        },
+        "nullable": true
+      },
+      {
+        "name": "is_pinned",
+        "description": "Whether the suggestion is pinned to the top of the list",
+        "type": 3,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "Public visibility logic"
+        }
+      },
+      {
+        "name": "is_trending",
+        "description": "Whether the suggestion is marked as trending",
+        "type": 3,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "Public visibility logic"
+        }
+      },
+      {
+        "name": "moderation_date",
+        "description": "Timestamp when the moderation action was taken",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        },
+        "format": "timestamp"
+      }
+    ],
+    "indexes": [
+      {
+        "fields": [
+          "id"
+        ],
+        "unique": true,
+        "primary": true,
+        "order": false
+      },
+      {
+        "fields": [
+          "suggestion_id"
+        ],
+        "unique": true,
+        "order": false
+      },
+      {
+        "fields": [
+          "moderator_admin_id"
+        ],
+        "order": false
+      },
+      {
+        "fields": [
+          "data_creator"
+        ],
+        "order": false
+      },
+      {
+        "fields": [
+          "data_updater"
+        ],
+        "order": false
+      }
+    ],
+    "relations": [
+      {
+        "referencing_fields": [
+          "suggestion_id"
+        ],
+        "referenced_entity": {
+          "name": "game_suggestion"
+        },
+        "referenced_fields": [
+          "id"
+        ],
+        "cascade": true
+      },
+      {
+        "referencing_fields": [
+          "moderator_admin_id"
+        ],
+        "referenced_entity": {
+          "name": "admin_user"
+        },
+        "referenced_fields": [
+          "id"
+        ]
+      }
+    ]
+  },
+  "task": {
+    "id": "6935ee561f329e24357e2c97",
+    "root": "6935e04198d99bdd07fe5953",
+    "project": "6935e04198d99bdd07fe5952",
+    "user": "d8b1b360-5011-7065-6912-607805fb8f4e"
+  },
+  "namespace": {
+    "id": "01987547fc6c72ecb453bd2736bd4ea0",
+    "tenant": 2,
+    "name": "global-1",
+    "default": true
+  },
+  "revision": 1
+}

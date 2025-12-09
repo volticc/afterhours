@@ -1,0 +1,242 @@
+{
+  "id": "102019afab30c1178a098f80094948653dc",
+  "version": "102019afab30c117827b6ba1f2495700fd3",
+  "schema": {
+    "name": "admin_audit_log",
+    "description": "Log of administrative actions performed within the system for security and auditing",
+    "fields": [
+      {
+        "name": "id",
+        "description": "Unique identifier for the audit log entry",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal identifier"
+        }
+      },
+      {
+        "name": "data_creator",
+        "description": "id of the user who creates the record",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        }
+      },
+      {
+        "name": "data_updater",
+        "description": "id of the user who updates the record",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        }
+      },
+      {
+        "name": "create_time",
+        "description": "create time in timestamp unix",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        },
+        "format": "timestamp"
+      },
+      {
+        "name": "update_time",
+        "description": "update time in timestamp unix",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        },
+        "format": "timestamp"
+      },
+      {
+        "name": "admin_user_id",
+        "description": "ID of the admin user who performed the action",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Audit trail"
+        }
+      },
+      {
+        "name": "action_type",
+        "description": "Type of action performed",
+        "type": 100,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Action classification"
+        },
+        "enumeration": [
+          {
+            "value": "Unspecified"
+          },
+          {
+            "number": 1,
+            "value": "Login"
+          },
+          {
+            "number": 2,
+            "value": "Logout"
+          },
+          {
+            "number": 3,
+            "value": "Create"
+          },
+          {
+            "number": 4,
+            "value": "Update"
+          },
+          {
+            "number": 5,
+            "value": "Delete"
+          },
+          {
+            "number": 6,
+            "value": "Publish"
+          },
+          {
+            "number": 7,
+            "value": "Unpublish"
+          },
+          {
+            "number": 8,
+            "value": "Approve"
+          },
+          {
+            "number": 9,
+            "value": "Reject"
+          }
+        ]
+      },
+      {
+        "name": "entity_type",
+        "description": "Name of the entity table affected by the action",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Audit context"
+        }
+      },
+      {
+        "name": "entity_id",
+        "description": "ID of the specific entity instance affected",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Audit context"
+        }
+      },
+      {
+        "name": "action_details",
+        "description": "JSON string or text describing details of the change",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Audit details"
+        },
+        "nullable": true
+      },
+      {
+        "name": "ip_address",
+        "description": "IP address from where the action originated",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 3,
+          "reason": "Security metadata"
+        },
+        "nullable": true,
+        "format": "ip"
+      },
+      {
+        "name": "user_agent",
+        "description": "User agent string of the client",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Technical metadata"
+        },
+        "nullable": true
+      },
+      {
+        "name": "action_timestamp",
+        "description": "Specific timestamp when the action occurred",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Audit timing"
+        },
+        "format": "timestamp"
+      }
+    ],
+    "indexes": [
+      {
+        "fields": [
+          "id"
+        ],
+        "unique": true,
+        "primary": true,
+        "order": false
+      },
+      {
+        "fields": [
+          "admin_user_id"
+        ],
+        "order": false
+      },
+      {
+        "fields": [
+          "action_type"
+        ],
+        "order": false
+      },
+      {
+        "fields": [
+          "entity_id",
+          "entity_type"
+        ],
+        "order": false
+      },
+      {
+        "fields": [
+          "data_creator"
+        ],
+        "order": false
+      },
+      {
+        "fields": [
+          "data_updater"
+        ],
+        "order": false
+      }
+    ],
+    "relations": [
+      {
+        "referencing_fields": [
+          "admin_user_id"
+        ],
+        "referenced_entity": {
+          "name": "admin_user"
+        },
+        "referenced_fields": [
+          "id"
+        ]
+      }
+    ]
+  },
+  "task": {
+    "id": "6935ee561f329e24357e2c97",
+    "root": "6935e04198d99bdd07fe5953",
+    "project": "6935e04198d99bdd07fe5952",
+    "user": "d8b1b360-5011-7065-6912-607805fb8f4e"
+  },
+  "namespace": {
+    "id": "01987547fc6c72ecb453bd2736bd4ea0",
+    "tenant": 2,
+    "name": "global-1",
+    "default": true
+  },
+  "revision": 1
+}

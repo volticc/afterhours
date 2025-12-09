@@ -1,0 +1,164 @@
+{
+  "id": "102019afbb8d7be77bd9d53a62a92e385bd",
+  "version": "102019b00c611587c8c865eed01327fc316",
+  "schema": {
+    "name": "game_suggestion",
+    "description": "User-submitted game ideas",
+    "fields": [
+      {
+        "name": "id",
+        "description": "Unique identifier for the suggestion",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "Public identifier"
+        }
+      },
+      {
+        "name": "data_creator",
+        "description": "id of the user who creates the record",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        }
+      },
+      {
+        "name": "data_updater",
+        "description": "id of the user who updates the record",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        }
+      },
+      {
+        "name": "create_time",
+        "description": "create time in timestamp unix",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "Public metadata"
+        },
+        "format": "timestamp"
+      },
+      {
+        "name": "update_time",
+        "description": "update time in timestamp unix",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "Public metadata"
+        },
+        "format": "timestamp"
+      },
+      {
+        "name": "title",
+        "description": "Title of the game suggestion",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "Public content"
+        }
+      },
+      {
+        "name": "description",
+        "description": "Detailed description of the suggestion",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "Public content"
+        },
+        "nullable": true
+      },
+      {
+        "name": "email",
+        "description": "Email address of the submitter",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 3,
+          "reason": "PII"
+        },
+        "nullable": true,
+        "format": "email"
+      },
+      {
+        "name": "status",
+        "description": "Status of the suggestion",
+        "type": 100,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "Public status"
+        },
+        "enumeration": [
+          {
+            "value": "Unspecified"
+          },
+          {
+            "number": 1,
+            "value": "New"
+          },
+          {
+            "number": 2,
+            "value": "UnderReview"
+          },
+          {
+            "number": 3,
+            "value": "Accepted"
+          },
+          {
+            "number": 4,
+            "value": "Rejected"
+          }
+        ]
+      }
+    ],
+    "indexes": [
+      {
+        "fields": [
+          "id"
+        ],
+        "unique": true,
+        "primary": true,
+        "order": false
+      },
+      {
+        "fields": [
+          "status"
+        ],
+        "order": false
+      },
+      {
+        "fields": [
+          "data_creator"
+        ],
+        "order": false
+      },
+      {
+        "fields": [
+          "email"
+        ],
+        "order": false
+      },
+      {
+        "fields": [
+          "data_updater"
+        ],
+        "order": false
+      }
+    ]
+  },
+  "task": {
+    "id": "69377e0a9be314c23511c3e0",
+    "root": "6935e04198d99bdd07fe5953",
+    "project": "6935e04198d99bdd07fe5952",
+    "user": "d8b1b360-5011-7065-6912-607805fb8f4e"
+  },
+  "namespace": {
+    "id": "01987547fc6c72ecb453bd2736bd4ea0",
+    "tenant": 2,
+    "name": "global-1",
+    "default": true
+  },
+  "revision": 1
+}

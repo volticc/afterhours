@@ -1,0 +1,220 @@
+{
+  "id": "102019afac1ab2273b4bd4290430be2933a",
+  "version": "102019afac1ab22703695d7a133f1d75eab",
+  "schema": {
+    "name": "media_asset",
+    "description": "Media assets managed within the CMS",
+    "fields": [
+      {
+        "name": "id",
+        "description": "Unique identifier for the media asset",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "Public identifier"
+        }
+      },
+      {
+        "name": "data_creator",
+        "description": "id of the user who creates the record",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        }
+      },
+      {
+        "name": "data_updater",
+        "description": "id of the user who updates the record",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        }
+      },
+      {
+        "name": "create_time",
+        "description": "create time in timestamp unix",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "Public metadata"
+        },
+        "format": "timestamp"
+      },
+      {
+        "name": "update_time",
+        "description": "update time in timestamp unix",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "Public metadata"
+        },
+        "format": "timestamp"
+      },
+      {
+        "name": "filename",
+        "description": "Original name of the uploaded file",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "Public asset info"
+        }
+      },
+      {
+        "name": "file_url",
+        "description": "URL to access the file",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "Public asset"
+        }
+      },
+      {
+        "name": "file_type",
+        "description": "Type classification of the media file",
+        "type": 100,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "Public classification"
+        },
+        "enumeration": [
+          {
+            "value": "Unspecified"
+          },
+          {
+            "number": 1,
+            "value": "Image"
+          },
+          {
+            "number": 2,
+            "value": "Video"
+          },
+          {
+            "number": 3,
+            "value": "Audio"
+          },
+          {
+            "number": 4,
+            "value": "Document"
+          }
+        ]
+      },
+      {
+        "name": "file_size",
+        "description": "Size of the file in bytes",
+        "type": 2,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "Public metadata"
+        },
+        "numeric": "int"
+      },
+      {
+        "name": "folder_path",
+        "description": "Virtual folder path for organizing assets",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal organization"
+        }
+      },
+      {
+        "name": "uploaded_by_admin_id",
+        "description": "ID of the admin user who uploaded the file",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        }
+      },
+      {
+        "name": "alt_text",
+        "description": "Alternative text for accessibility",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "Public accessibility"
+        },
+        "nullable": true
+      },
+      {
+        "name": "tags",
+        "description": "Tags for categorization and search",
+        "type": 101,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "Public categorization"
+        },
+        "nullable": true,
+        "items": {
+          "type": 1,
+          "taxonomy": {},
+          "reference": {
+            "name": ""
+          }
+        }
+      }
+    ],
+    "indexes": [
+      {
+        "fields": [
+          "id"
+        ],
+        "unique": true,
+        "primary": true,
+        "order": false
+      },
+      {
+        "fields": [
+          "folder_path"
+        ],
+        "order": false
+      },
+      {
+        "fields": [
+          "uploaded_by_admin_id"
+        ],
+        "order": false
+      },
+      {
+        "fields": [
+          "data_creator"
+        ],
+        "order": false
+      },
+      {
+        "fields": [
+          "data_updater"
+        ],
+        "order": false
+      }
+    ],
+    "relations": [
+      {
+        "referencing_fields": [
+          "uploaded_by_admin_id"
+        ],
+        "referenced_entity": {
+          "name": "admin_user"
+        },
+        "referenced_fields": [
+          "id"
+        ]
+      }
+    ]
+  },
+  "task": {
+    "id": "6935ee561f329e24357e2c97",
+    "root": "6935e04198d99bdd07fe5953",
+    "project": "6935e04198d99bdd07fe5952",
+    "user": "d8b1b360-5011-7065-6912-607805fb8f4e"
+  },
+  "namespace": {
+    "id": "01987547fc6c72ecb453bd2736bd4ea0",
+    "tenant": 2,
+    "name": "global-1",
+    "default": true
+  },
+  "revision": 1
+}

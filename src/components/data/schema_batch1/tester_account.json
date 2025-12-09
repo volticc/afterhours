@@ -1,0 +1,222 @@
+{
+  "id": "102019afab30c117a6fb3cfe53eb21c16ab",
+  "version": "102019afab30c117827b6ba1f2495700fd3",
+  "schema": {
+    "name": "tester_account",
+    "description": "Accounts for external or internal testers with restricted access to games",
+    "fields": [
+      {
+        "name": "id",
+        "description": "Unique identifier for the tester account",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal identifier"
+        }
+      },
+      {
+        "name": "data_creator",
+        "description": "id of the user who creates the record",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        }
+      },
+      {
+        "name": "data_updater",
+        "description": "id of the user who updates the record",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        }
+      },
+      {
+        "name": "create_time",
+        "description": "create time in timestamp unix",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        },
+        "format": "timestamp"
+      },
+      {
+        "name": "update_time",
+        "description": "update time in timestamp unix",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        },
+        "format": "timestamp"
+      },
+      {
+        "name": "email",
+        "description": "Email address of the tester",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 3,
+          "reason": "PII"
+        },
+        "taxonomy": {
+          "category": "Contact Info",
+          "subject": "Tester"
+        }
+      },
+      {
+        "name": "username",
+        "description": "Username for the tester",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Account identifier"
+        }
+      },
+      {
+        "name": "access_key",
+        "description": "Unique key used for authentication/game access",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 4,
+          "reason": "Authentication Credential"
+        },
+        "encryption": true
+      },
+      {
+        "name": "assigned_game_ids",
+        "description": "List of game IDs the tester is authorized to access",
+        "type": 101,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Access control"
+        },
+        "nullable": true,
+        "items": {
+          "type": 1,
+          "taxonomy": {
+            "category": "Reference",
+            "subject": "Game"
+          },
+          "reference": {
+            "name": "game"
+          }
+        }
+      },
+      {
+        "name": "status",
+        "description": "Current status of the tester account",
+        "type": 100,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Access control"
+        },
+        "enumeration": [
+          {
+            "value": "Unspecified"
+          },
+          {
+            "number": 1,
+            "value": "Active"
+          },
+          {
+            "number": 2,
+            "value": "Revoked"
+          },
+          {
+            "number": 3,
+            "value": "Pending"
+          }
+        ]
+      },
+      {
+        "name": "invited_by_admin_id",
+        "description": "ID of the admin who invited this tester",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Audit"
+        }
+      },
+      {
+        "name": "invitation_date",
+        "description": "Timestamp when the invitation was sent",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Audit timing"
+        },
+        "format": "timestamp"
+      }
+    ],
+    "indexes": [
+      {
+        "fields": [
+          "id"
+        ],
+        "unique": true,
+        "primary": true,
+        "order": false
+      },
+      {
+        "fields": [
+          "email"
+        ],
+        "unique": true,
+        "order": false
+      },
+      {
+        "fields": [
+          "access_key"
+        ],
+        "unique": true,
+        "order": false
+      },
+      {
+        "fields": [
+          "invited_by_admin_id"
+        ],
+        "order": false
+      },
+      {
+        "fields": [
+          "data_creator"
+        ],
+        "order": false
+      },
+      {
+        "fields": [
+          "data_updater"
+        ],
+        "order": false
+      }
+    ],
+    "relations": [
+      {
+        "referencing_fields": [
+          "invited_by_admin_id"
+        ],
+        "referenced_entity": {
+          "name": "admin_user"
+        },
+        "referenced_fields": [
+          "id"
+        ]
+      }
+    ]
+  },
+  "task": {
+    "id": "6935ee561f329e24357e2c97",
+    "root": "6935e04198d99bdd07fe5953",
+    "project": "6935e04198d99bdd07fe5952",
+    "user": "d8b1b360-5011-7065-6912-607805fb8f4e"
+  },
+  "namespace": {
+    "id": "01987547fc6c72ecb453bd2736bd4ea0",
+    "tenant": 2,
+    "name": "global-1",
+    "default": true
+  },
+  "revision": 1
+}

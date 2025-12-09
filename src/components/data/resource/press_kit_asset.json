@@ -1,0 +1,170 @@
+{
+  "id": "102019afbb8d7be7b2387c97b0ac671d872",
+  "version": "102019b00c611587c8c865eed01327fc316",
+  "schema": {
+    "name": "press_kit_asset",
+    "description": "Downloadable media assets for press",
+    "fields": [
+      {
+        "name": "id",
+        "description": "Unique identifier for the asset",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "Public identifier"
+        }
+      },
+      {
+        "name": "data_creator",
+        "description": "id of the user who creates the record",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        }
+      },
+      {
+        "name": "data_updater",
+        "description": "id of the user who updates the record",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal audit"
+        }
+      },
+      {
+        "name": "create_time",
+        "description": "create time in timestamp unix",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "Public metadata"
+        },
+        "format": "timestamp"
+      },
+      {
+        "name": "update_time",
+        "description": "update time in timestamp unix",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "Public metadata"
+        },
+        "format": "timestamp"
+      },
+      {
+        "name": "asset_name",
+        "description": "Name of the asset",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "Public asset info"
+        }
+      },
+      {
+        "name": "description",
+        "description": "Description of the asset",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "Public asset info"
+        },
+        "nullable": true
+      },
+      {
+        "name": "file_url",
+        "description": "URL to the downloadable file",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "Public asset"
+        }
+      },
+      {
+        "name": "asset_type",
+        "description": "Type classification of the asset",
+        "type": 100,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "Public classification"
+        },
+        "enumeration": [
+          {
+            "value": "Unspecified"
+          },
+          {
+            "number": 1,
+            "value": "Logo"
+          },
+          {
+            "number": 2,
+            "value": "Screenshot"
+          },
+          {
+            "number": 3,
+            "value": "Trailer"
+          },
+          {
+            "number": 4,
+            "value": "Artwork"
+          }
+        ]
+      },
+      {
+        "name": "file_size",
+        "description": "Size of the file in bytes",
+        "type": 2,
+        "compliance": {
+          "confidentiality": 1,
+          "reason": "Public metadata"
+        },
+        "taxonomy": {},
+        "reference": {
+          "name": ""
+        },
+        "numeric": "int"
+      }
+    ],
+    "indexes": [
+      {
+        "fields": [
+          "id"
+        ],
+        "unique": true,
+        "primary": true,
+        "order": false
+      },
+      {
+        "fields": [
+          "asset_type"
+        ],
+        "order": false
+      },
+      {
+        "fields": [
+          "data_creator"
+        ],
+        "order": false
+      },
+      {
+        "fields": [
+          "data_updater"
+        ],
+        "order": false
+      }
+    ]
+  },
+  "task": {
+    "id": "69377e0a9be314c23511c3e0",
+    "root": "6935e04198d99bdd07fe5953",
+    "project": "6935e04198d99bdd07fe5952",
+    "user": "d8b1b360-5011-7065-6912-607805fb8f4e"
+  },
+  "namespace": {
+    "id": "01987547fc6c72ecb453bd2736bd4ea0",
+    "tenant": 2,
+    "name": "global-1",
+    "default": true
+  },
+  "revision": 1
+}
