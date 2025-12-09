@@ -1,6 +1,11 @@
 {
   "include": ["**/*.ts", "**/*.tsx"],
-  "exclude": ["agent/**/*"],
+  "exclude": [
+    "agent/**",
+    "scripts",
+    "scripts/**/*"
+  ],
+  
   "compilerOptions": {
     "target": "ES2022",
     "jsx": "react-jsx",
