@@ -24,6 +24,14 @@ export default defineConfig({
 		svgr(),
 		tailwindcss(),
 	],
+
+	optimizeDeps: {
+		exclude: [
+		  'scripts',
+		  'scripts/create-admin.ts'
+		]
+	  },
+	  
 	test: {
 		globals: true,
 		environment: "jsdom",
@@ -45,4 +53,11 @@ export default defineConfig({
 	build: {
 		chunkSizeWarningLimit: 1500,
 	},
+
+	ssr: {
+		noExternal: [
+		  'scripts'
+		]
+	  },
+	  
 });

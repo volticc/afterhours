@@ -1,5 +1,6 @@
 {
-  "include": ["**/*.ts", "**/*.tsx"],
+  "include": ["src/**/*"],
+
   "exclude": [
     "agent/**",
     "scripts",
